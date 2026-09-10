@@ -20,6 +20,7 @@ export default function Home() {
   // Параллакс эффект для фона
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
+  const yTrees = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
   return (
     <main
       ref={containerRef}
@@ -216,14 +217,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PROJECTS SECTION - СТРОГАЯ СЕТКА */}
-      <section className="py-32 px-6 md:px-20 relative z-10 bg-[var(--bg-color)]">
-        <div className="max-w-7xl mx-auto">
+      {/* PROJECTS SECTION - С ДЕРЕВЬЯМИ ПО БОКАМ */}
+      <section className="relative py-32 px-6 md:px-20 bg-[var(--bg-color)] overflow-hidden min-h-screen flex flex-col justify-center">
+        {/* Левое дерево - УЗКОЕ ЧЕРЕЗ МАСШТАБ */}
+
+        <div className="absolute inset-0 z-0 opacity-90 pointer-events-none">
+          <Image 
+            src="/me.png" 
+            alt="" 
+            fill 
+            className="object-cover object-bottom grayscale contrast-125 brightness-50 blur-sm" 
+      
+          />
+          {/* Градиент: сверху видно лес, снизу чистый черный */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--bg-color)]/80 to-[var(--bg-color)]" />
+        </div>
+        <motion.div
+          className="absolute top-[-10%] bottom-[-10%] pointer-events-none z-0 opacity-40 overflow-hidden"
+          style={{ left: "-190px", width: "900px", y: yTrees }} // Контейнер задает зону видимости
+        >
+          <Image
+            src="/tree-left.png"
+            alt=""
+            fill
+            className="object-cover object-top grayscale contrast-155 brightness-25 scale-x-[0.7] -rotate-2"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/0 via-black/30 to-[var(--bg-color)]" />
+        </motion.div>
+
+        {/* Правое дерево - зеркально */}
+        <motion.div className="absolute right-[-270px] top-[-10%] bottom-[-10%] scale-x-[1.1] w-[1500px] rotate-3 pointer-events-none z-0 opacity-40"
+         style={{  y: yTrees }} >
+          <Image
+            src="/tree-right.png"
+            alt=""
+            fill
+            className="object-cover object-top grayscale contrast-155 brightness-25"
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-black/0 via-black/20 to-[var(--bg-color)]" />
+        </motion.div>
+        {/* КОНТЕНТ СЕКЦИИ (поверх деревьев) */}
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
           <div className="flex justify-between items-end mb-20 border-b border-white/10 pb-8">
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-white">
               ИЗБРАННОЕ
             </h2>
-            <span className="text-[var(--accent-color)] font-mono text-sm">
+            <span className="text-[#ff3c00] font-mono text-sm">
               2024 — 2026
             </span>
           </div>
@@ -231,36 +270,33 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
             {/* Проект 1 */}
             <article className="group cursor-pointer">
-              <div className="aspect-[4/3] bg-gray-900 overflow-hidden mb-6 relative">
-                {/* Плейсхолдер. Сюда next/image с hover-зумом */}
+              <div className="aspect-[4/3] bg-gray-900 overflow-hidden mb-6 relative rounded-sm">
                 <div className="w-full h-full bg-gray-800 group-hover:scale-105 transition-transform duration-700 ease-out" />
                 <div className="absolute top-4 right-4 bg-white text-black px-3 py-1 text-xs font-bold uppercase">
                   Case Study
                 </div>
               </div>
-              <h3 className="text-3xl font-bold mb-2 group-hover:text-[var(--accent-color)] transition-colors">
+              <h3 className="text-3xl font-bold mb-2 text-white group-hover:text-[#ff3c00] transition-colors">
                 Pribaikalec Portal
               </h3>
-              <p className="text-[var(--secondary-text)] max-w-md">
+              <p className="text-gray-400 max-w-md">
                 Редизайн регионального медиа. Рост вовлеченности на 40%.
                 Next.js, Strapi.
               </p>
             </article>
 
-            {/* Проект 2 */}
+            {/* Проект 2 (со сдвигом) */}
             <article className="group cursor-pointer md:mt-32">
-              {" "}
-              {/* Сдвиг второй колонки для динамики */}
-              <div className="aspect-[4/3] bg-gray-900 overflow-hidden mb-6 relative">
+              <div className="aspect-[4/3] bg-gray-900 overflow-hidden mb-6 relative rounded-sm">
                 <div className="w-full h-full bg-gray-800 group-hover:scale-105 transition-transform duration-700 ease-out" />
                 <div className="absolute top-4 right-4 bg-white text-black px-3 py-1 text-xs font-bold uppercase">
                   Web App
                 </div>
               </div>
-              <h3 className="text-3xl font-bold mb-2 group-hover:text-[var(--accent-color)] transition-colors">
+              <h3 className="text-3xl font-bold mb-2 text-white group-hover:text-[#ff3c00] transition-colors">
                 Interactive Map System
               </h3>
-              <p className="text-[var(--secondary-text)] max-w-md">
+              <p className="text-gray-400 max-w-md">
                 Геосервис для туризма. Оптимизация рендера 10k+ маркеров.
               </p>
             </article>
