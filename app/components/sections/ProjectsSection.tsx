@@ -61,7 +61,7 @@ const rowVariants = {
     y: 0,
     opacity: 1,
     filter: "blur(0px)",
-    transition: { type: "spring", stiffness: 70, damping: 22 },
+    transition: { type: "spring" as const, stiffness: 70, damping: 22 },
   },
 };
 
