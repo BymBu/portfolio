@@ -2,6 +2,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import LenisProvider from './components/providers/LenisProvider'
 
 const inter = Inter({ 
   subsets: ['latin', 'cyrillic'],
@@ -9,11 +10,24 @@ const inter = Inter({
   display: 'swap',
 })
 
-// Подключаем Clash Display через CDN (Fontshare)
-// Добавляем этот тег в head
+
 export const metadata: Metadata = {
-  title: 'Slava | Full-stack Developer',
-  description: 'Разработка сложных веб-приложений.',
+  title: {
+    default: 'Slava | Full-stack Developer',
+    template: '%s | Slava Portfolio' 
+  },
+  description: 'Full-stack разработчик из Бурятии. Next.js, React, Three.js. Превращаю хаос в сложные системы.', // Чуть конкретнее, чем просто "разработка приложений"
+  openGraph: {
+    title: 'Slava | Full-stack Developer',
+    description: 'Портфолио разработчика. Next.js, React, Three.js, Docker.',
+    url: 'https://твой-домен.vercel.app', 
+    siteName: 'Slava Portfolio',
+    locale: 'ru_RU',
+    type: 'website',
+  },
+  icons: {
+    icon: '/favicon.ico', 
+  },
 }
 
 export default function RootLayout({
@@ -24,14 +38,17 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
-        {/* Вставляем стили для Clash Display прямо сюда */}
+
         <link 
           href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600&display=swap" 
           rel="stylesheet" 
+
         />
       </head>
       <body className={`${inter.variable} font-sans antialiased bg-[var(--bg-color)] text-[var(--text-color)]`}>
-        {children}
+         <LenisProvider>
+          {children}
+        </LenisProvider>
       </body>
     </html>
   )

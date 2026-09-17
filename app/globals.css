@@ -12,7 +12,7 @@
 :root {
   --bg-color: #0a0a0a;
   --text-color: #f0f0f0;
-  --accent-color: #ff3c00;
+  --accent-color: #f0f0f0;
   --secondary-text: #888888;
 }
 
@@ -35,4 +35,53 @@ body {
 
 .animate-blink {
   animation: blink 1s step-end infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+  will-change: transform;
+}
+
+
+.group:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: auto !important;
+  overflow-x: hidden;
+  scroll-behavior: auto !important;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: auto !important;
+  overflow-x: hidden;
+  scroll-behavior: auto !important;
+}
+
+/* Убираем любые артефакты при пине */
+[data-snap] {
+  will-change: transform;
+  backface-visibility: hidden;
 }
