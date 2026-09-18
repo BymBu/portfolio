@@ -217,7 +217,7 @@ function ProjectRow({ project }: { project: (typeof projects)[0] }) {
             </div>
             
             <div className="mt-auto">
-              <span className="text-[10px] md:text-xs font-mono text-white/20 group-hover:text-white group-hover:underline underline-offset-4 transition-all flex items-center gap-1">
+              <span className="text-[16px] md:text-[20px] mt-30 font-mono text-white/20 group-hover:text-white group-hover:underline underline-offset-4 transition-all flex items-center gap-1">
                 ОТКРЫТЬ ПРОЕКТ <span className="transition-transform group-hover:translate-x-1">→</span>
               </span>
             </div>
