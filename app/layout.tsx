@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | Slava Portfolio",
   },
   description:
-    "Full-stack разработчик из Бурятии. Next.js, React, Three.js. Превращаю хаос в сложные системы.", // Чуть конкретнее, чем просто "разработка приложений"
+    "Full-stack разработчик из Бурятии. Next.js, React, Three.js. Превращаю хаос в сложные системы.",
   openGraph: {
     title: "Slava | Full-stack Developer",
     description: "Портфолио разработчика. Next.js, React, Three.js, Docker.",
